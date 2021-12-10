@@ -33,6 +33,12 @@
         }
     }
 
+    function logout(){
+        session_unset();
+        session_destroy();
+        header("Location: ../index.php");
+    }
+
     //URL Router
     if(isset($_POST['submit'])){
         $url = $_POST['url'];
@@ -41,6 +47,8 @@
             register();
         } else if ($url === 'signin'){
             signin();
+        } else if($url === 'logout'){
+            logout();
         }
         
     }
