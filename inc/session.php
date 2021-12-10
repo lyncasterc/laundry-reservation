@@ -19,7 +19,7 @@
         header("Location: ../index.php");
     }
 
-
+    //URL Router
     if(isset($_POST['submit'])){
         $url = $_POST['url'];
 
@@ -30,6 +30,4 @@
     }
 
 
-
-    
 ?>
