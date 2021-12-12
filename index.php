@@ -4,6 +4,11 @@
     <?php 
         require_once './inc/session.php';
         check_session();
+        date_default_timezone_set('America/New_York');
+        // echo date('h');
+        // $army_time_str = "00:00";
+        // $regular_time_str = date( 'g:i A', strtotime( $army_time_str ) );
+        // echo $regular_time_str;
     ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
