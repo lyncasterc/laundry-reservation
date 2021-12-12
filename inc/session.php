@@ -9,15 +9,15 @@
         } 
     }
 
-    function set_session_user($apt_number){
-        $_SESSION["session_user"] = $apt_number;
-        //todo: add username to a session variable
+    function set_session_user($username, $apt_number){
+        $_SESSION["session_user"] = $username;
+        $_SESSION["session_apt"] = $apt_number;
     }
 
     function register(){
         // todo: handle duplicate apt_number error
-        $apt_number = create_user();
-        set_session_user($apt_number);
+        $user_info = create_user();
+        set_session_user($user_info["username"], $user_info["apt_number"]);
         header("Location: ../index.php");
     }
 
@@ -27,7 +27,7 @@
         $apt_number = get_apt_number($input_username, $input_password);
 
         if($apt_number){
-            set_session_user($apt_number);
+            set_session_user($input_username, $apt_number);
             header("Location: ../index.php");
         } else {
             echo "USER DOES NOT EXIST";

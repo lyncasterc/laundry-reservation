@@ -12,8 +12,8 @@
 
         $db->query($insert_sql);
         $db->close();
-
-        return $apt_number;        
+        
+        return array($input_username, $apt_number);
     }
     
 
