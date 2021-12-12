@@ -75,6 +75,16 @@
         }
     }
 
+    // get reservation info for a given apt_number
+    function get_reservation_info($apt_number){
+        $db = db_connect();
+        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number = '$apt_number'";
+        $result = $db->query($sql)->fetch_assoc();
+        $db->close();
+
+        return $result;
+    }
+
 
     //returns total number of timeslots (should be 56)
     function get_num_timeslots(){
@@ -98,6 +108,5 @@
         $db->query($sql);
         $db->close();
     }
-    
     
 ?>
