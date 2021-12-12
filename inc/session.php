@@ -9,23 +9,25 @@
         } 
     }
 
-    function set_session_user($user_id){
-        $_SESSION["session_user"] = $user_id;
+    function set_session_user($apt_number){
+        $_SESSION["session_user"] = $apt_number;
+        //todo: add username to a session variable
     }
 
     function register(){
-        $user_id = create_user();
-        set_session_user($user_id);
+        // todo: handle duplicate apt_number error
+        $apt_number = create_user();
+        set_session_user($apt_number);
         header("Location: ../index.php");
     }
 
     function signin(){
         $input_username = $_POST['username'];
         $input_password = $_POST['password'];
-        $user_id = get_user_id($input_username, $input_password);
+        $apt_number = get_apt_number($input_username, $input_password);
 
-        if($user_id){
-            set_session_user($user_id);
+        if($apt_number){
+            set_session_user($apt_number);
             header("Location: ../index.php");
         } else {
             echo "USER DOES NOT EXIST";

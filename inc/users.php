@@ -5,31 +5,31 @@
         $db = db_connect();
         $input_username = $_POST['username'];
         $input_password = $_POST['password'];
+        $apt_number = $_POST['apt_number'];
 
-        $insert_sql = "INSERT INTO LaundryDatabase.Users (username, password) 
-                        VALUES ('$input_username', '$input_password')";
+        $insert_sql = "INSERT INTO LaundryDatabase.Users (apt_number, username, password) 
+                        VALUES ('$apt_number', '$input_username', '$input_password')";
 
         $db->query($insert_sql);
         $db->close();
-        $user_id = get_user_id($input_username ,$input_password);
 
-        return $user_id;        
+        return $apt_number;        
     }
     
 
-    // retrieves user_id from the user's username and password
+    // retrieves user's apt_number using the user's username and password
     // or returns false if user does not exist.
-    function get_user_id($username, $password){
+    function get_apt_number($username, $password){
         $db = db_connect();
-        $get_user_id_sql = "SELECT *
+        $get_apt_number_sql = "SELECT *
                             FROM LaundryDatabase.Users 
                             WHERE LaundryDatabase.Users.username = '$username' 
                             AND LaundryDatabase.Users.password = '$password' ";
 
         // retrieves the user id 
-        $user_id_result = $db->query($get_user_id_sql)->fetch_assoc()['user_id'];
+        $result = $db->query($get_apt_number_sql)->fetch_assoc()['apt_number'];
         $db->close();
     
-        return (empty($user_id_result)) ? false : $user_id_result;
+        return (empty($result)) ? false : $result;
     }
 ?>
