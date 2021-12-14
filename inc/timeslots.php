@@ -51,19 +51,17 @@
         return $timeslots;
     }
 
-    // calls get_available_timeslots with a weekday and prints out the timeslots for the day as li's if the current time is less than the start hour of the timeslot and the current day is greater than or equal to the weekday
+    // returns template html for a timeslot
     function print_available_timeslots($weekday){
         $available_timeslots = get_available_timeslots($weekday);
         
-
         foreach ($available_timeslots as $timeslot_arr) {
-            // create item to be echoed which is a li inside, a label for the timeslot and a radio button
+            $start_hour = date('g:i A', strtotime($timeslot_arr['start_hour']));
             $item = "<li>
-                        <label for='$weekday-$timeslot_arr[start_hour]'>$timeslot_arr[start_hour]</label>
+                        <label for='$weekday-$timeslot_arr[start_hour]'> $start_hour</label>
                         <input type='radio' name='timeslot' value='$weekday-$timeslot_arr[start_hour]' id='$weekday-$timeslot_arr[start_hour]' />
                     </li>";
 
-            // $list_item = "<li>" . date('g:i A', strtotime($timeslot_arr['start_hour'])). "</li>";
             $weekday_num = array_search($weekday, $GLOBALS['weekdays']);
             $current_weekday_num = array_search($GLOBALS['current_weekday'], $GLOBALS['weekdays']);
 
@@ -75,7 +73,6 @@
             } else if ($current_weekday_num < $weekday_num){
                 echo $item;
             }
-            
         }
     }
 
