@@ -14,18 +14,5 @@ ul {
 #timeslots-table{
     margin-top: 1rem;
     display: flex;
-    max-width: 800px;
-    justify-content: space-evenly;
+    gap: 10px;
 }
-.table-col {
-    /* width: 400px; */
-    border: 1px solid black;
-    padding: 5px;
-}
-
-.timeslot-item {
-    width: 5.5rem;
-    display: flex;
-    justify-content: space-between;
-    /* gap: 5px; */
-}   
