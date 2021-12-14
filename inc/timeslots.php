@@ -3,7 +3,8 @@
     require_once 'database.php';
     $weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     $current_weekday = date('l');
-    $current_hour = date('Hi');
+    $current_time = date('Hi');
+    $current_hour = $current_time[0] . $current_time[1];
 
     // seeds the database with all of the timeslots
     function seed_timeslots(){
@@ -27,9 +28,9 @@
     }
 
     //get all of the timeslots from the database where apt_number is null and return them as an array
-    function get_available_timeslots(){
+    function get_available_timeslots($weekday){
         $db = db_connect();
-        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number IS NULL";
+        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number IS NULL AND weekday = '$weekday'";
         $result = $db->query($sql);
         $timeslots = [];
 
@@ -37,8 +38,45 @@
             array_push($timeslots, $row);
         }
 
+        // sort the timeslots by start_hour by converting them to date objects
+        // and then sorting them by their start_hour
+        usort($timeslots, function($a, $b){
+            $a_date = new DateTime($a['start_hour']);
+            $b_date = new DateTime($b['start_hour']);
+            return $a_date <=> $b_date;
+        });
+        
+
         $db->close();
         return $timeslots;
+    }
+
+    // calls get_available_timeslots with a weekday and prints out the timeslots for the day as li's if the current time is less than the start hour of the timeslot and the current day is greater than or equal to the weekday
+    function print_available_timeslots($weekday){
+        $available_timeslots = get_available_timeslots($weekday);
+        
+
+        foreach ($available_timeslots as $timeslot_arr) {
+            // create item to be echoed which is a li inside, a label for the timeslot and a radio button
+            $item = "<li>
+                        <label for='$weekday-$timeslot_arr[start_hour]'>$timeslot_arr[start_hour]</label>
+                        <input type='radio' name='timeslot' value='$weekday-$timeslot_arr[start_hour]' id='$weekday-$timeslot_arr[start_hour]' />
+                    </li>";
+
+            // $list_item = "<li>" . date('g:i A', strtotime($timeslot_arr['start_hour'])). "</li>";
+            $weekday_num = array_search($weekday, $GLOBALS['weekdays']);
+            $current_weekday_num = array_search($GLOBALS['current_weekday'], $GLOBALS['weekdays']);
+
+            if($current_weekday_num === $weekday_num){
+                if(strtotime($GLOBALS['current_time']) <= strtotime($timeslot_arr['start_hour'])){
+                    echo $item;
+                }
+
+            } else if ($current_weekday_num < $weekday_num){
+                echo $item;
+            }
+            
+        }
     }
 
     // reserve a timeslot using the start_hour and weekday of the timeslot
@@ -61,19 +99,19 @@
     }
 
     // returns true if apt_number has a timeslot reserved, false otherwise
-    function check_for_reservation($apt_number){
-        $db = db_connect();
-        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number = '$apt_number'";
-        $result = $db->query($sql);
+    // function check_for_reservation($apt_number){
+    //     $db = db_connect();
+    //     $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number = '$apt_number'";
+    //     $result = $db->query($sql);
 
-        if($result->num_rows > 0){
-            $db->close();
-            return true;
-        } else {
-            $db->close();
-            return false;
-        }
-    }
+    //     if($result->num_rows > 0){
+    //         $db->close();
+    //         return true;
+    //     } else {
+    //         $db->close();
+    //         return false;
+    //     }
+    // }
 
     // get reservation info for a given apt_number
     function get_reservation_info($apt_number){
@@ -102,11 +140,11 @@
     }
 
     // resetting apt_numbers to null if at Sunday at 00:00
-    if ($current_weekday == 'Sunday' && $current_hour == '0000') {
+    if ($current_weekday == 'Sunday' && $current_time == '0000') {
         $db = db_connect();
         $sql = "UPDATE LaundryDatabase.Timeslots SET apt_number = NULL";
         $db->query($sql);
         $db->close();
     }
-    
+
 ?>
