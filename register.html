@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Sign Up</title>
+    <link href="style.css" rel="stylesheet">
+    <h1>REGISTRATION FORM</h1>
 </head>
+
 <body>
-    <form action="./inc/session.php" method="post">
-        <h2>Create Account</h2>
+    <div class="login">
 
-        <label for="username">Username</label> <br>
-        <input type="text" id="username" name="username" required> <br>
+        <form action="./inc/session.php" method="post">
 
-        <label for="password">Password</label> <br>
-        <input type="password" id="password" name="password" required> <br>
 
-        <label for="apt_number">Apartment Number</label> <br>
-        <input type="text" id="apt_number" name="apt_number" required> <br>
+            <h2><label for="username">USERNAME</label> <br>
+                <input type="text" class="input-box" placeholder="username" id="username" name="username" required>
+            </h2>
 
-        <input type="hidden" name="url" value="register">
-        
-        <button type="submit" name="submit">Create Account</button> <br>
+            <h2><label for="aptnumber">APARTMENT NUMBER</label><br>
+                <input type="text" class="input-box" placeholder="apt #" id="apt_number" name="apt_number" required>
+            </h2>
 
-        <a href="signin.html"> Already have an account? Sign in </a>
-    </form>
+            <h2><label for="password">PASSWORD</label><br>
+                <input type="password" class="input-box" placeholder="password" id="password" name="password" required>
+            </h2><br>
+
+            <input type="hidden" name="url" value="register">
+
+            <button type="submit" name="submit">SIGN UP</button> <br>
+
+            <br><a href="signin.html"> Already have an account? Sign in </a>
+        </form>
+    </div>
 </body>
+
 </html>

@@ -5,6 +5,7 @@ body{
   padding: 0;
 }
 
+
 h1{
   font-family: 'Stencil';
   font-weight: bold;
@@ -86,6 +87,12 @@ button:hover {
 .row{
   background-color: rgb(94, 196, 255);
   width: 25%;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+}
+.timeslots-container{
+  text-align: left; 
+  padding: 0 1.5rem; 
 }
 
 .rsvp{
@@ -95,3 +102,17 @@ button:hover {
 .optgroup { 
   font-family: 'Stencil';
   font-size:40px; }
+
+/* Index time slots */
+.timeslot{
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+/* Logout Form */
+#logout-form {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right:0;
+}

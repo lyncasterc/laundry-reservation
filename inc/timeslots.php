@@ -57,10 +57,9 @@
         
         foreach ($available_timeslots as $timeslot_arr) {
             $start_hour = date('g:i A', strtotime($timeslot_arr['start_hour']));
-            $item = "<li class='timeslot-item'>
-                        <label for='$weekday-$timeslot_arr[start_hour]'> $start_hour</label>
-                        <input type='radio' name='timeslot' value='$weekday-$timeslot_arr[start_hour]' id='$weekday-$timeslot_arr[start_hour]' />
-                    </li>";
+            $item = "<span class='timeslot'>
+                        $start_hour 
+                    </span>";
 
             $weekday_num = array_search($weekday, $GLOBALS['weekdays']);
             $current_weekday_num = array_search($GLOBALS['current_weekday'], $GLOBALS['weekdays']);
