@@ -51,6 +51,9 @@
             signin();
         } else if($url === 'logout'){
             logout();
+        } else if($url === 'reserve'){
+            require_once 'timeslots.php';
+            reserve_timeslot($_POST['hour-input'], $_POST['weekday-input'], $_SESSION['session_apt']);
         }
         
     }
