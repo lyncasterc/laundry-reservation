@@ -57,7 +57,7 @@
         
         foreach ($available_timeslots as $timeslot_arr) {
             $start_hour = date('g:i A', strtotime($timeslot_arr['start_hour']));
-            $item = "<span class='timeslot'>
+            $item = "<span data-hour='$timeslot_arr[start_hour]' class='timeslot'>
                         $start_hour 
                     </span>";
 
@@ -85,11 +85,11 @@
 
         $result = $db->query($sql);
 
-        if($result){
-            echo "Successfully reserved $start_hour $weekday for apt_number $apt_number.\n\n";
-        } else {
-            echo "Error reserving $start_hour $weekday for apt_number $apt_number.\n\n";
-        }
+        // if($result){
+        //     echo "Successfully reserved $start_hour $weekday for apt_number $apt_number.\n\n";
+        // } else {
+        //     echo "Error reserving $start_hour $weekday for apt_number $apt_number.\n\n";
+        // }
 
         $db->close();
     }
