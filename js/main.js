@@ -2,6 +2,7 @@ const timeslotRows = document.querySelectorAll('.timeslots-container');
 const weekdaySelect = document.querySelector('#weekday-input');
 const hourSelect = document.querySelector('#hour-input');
 const reservationForm = document.querySelector('#reserve');
+const reservationButton = document.querySelector('#reserve-btn');
 
 // renders options for weekday select for weekdays that have at least one timeslot
 timeslotRows.forEach(row => {
@@ -33,12 +34,17 @@ weekdaySelect.addEventListener('change', () => {
     }
 );
 
-// confirmation for when timeslot form is submitted
-reservationForm.addEventListener('submit', () => {
+// confirm reservation button event listener
+reservationButton.addEventListener('click', (e) => {
     const selectedWeekday = weekdaySelect.value;
     const selectedHour = hourSelect.options[hourSelect.selectedIndex].innerText.trim();
-    return confirm(`Are you sure you want to reserve this timeslot?\n${selectedWeekday} at ${selectedHour}`);
-});
+
+    if(!confirm(`Are you sure you want to reserve this timeslot?\n${selectedWeekday} at ${selectedHour}`)){
+        e.preventDefault();
+    }
+
+}, false);
+
 
 renderHourOptions(weekdaySelect.value);
 

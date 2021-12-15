@@ -1,5 +1,7 @@
 <?php 
     require_once 'users.php';
+    require_once 'timeslots.php';
+
     session_start();
 
     // redirects a user to signin.html if a session is not set.
@@ -41,6 +43,17 @@
         header("Location: ../index.php");
     }
 
+    function reserve(){
+        $start_hour = $_POST['hour-input'];
+        $weekday = $_POST['weekday-input'];
+        $apt_number = $_SESSION['session_apt'];
+
+        reserve_timeslot($start_hour, $weekday, $apt_number);
+        header("Location: ../index.php");
+        //todo: flash success message
+        //todo: flash error message
+    }
+
     //URL Router
     if(isset($_POST['submit'])){
         $url = $_POST['url'];
@@ -52,11 +65,12 @@
         } else if($url === 'logout'){
             logout();
         } else if($url === 'reserve'){
-            require_once 'timeslots.php';
-            reserve_timeslot($_POST['hour-input'], $_POST['weekday-input'], $_SESSION['session_apt']);
+            reserve();
         }
-        
     }
+
+    
+    
 
 
 ?>

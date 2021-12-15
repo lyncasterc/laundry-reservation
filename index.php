@@ -120,7 +120,7 @@
 
             <input type="hidden" name="url" value="reserve">
 
-            <h2><button type="submit" name="submit">RESERVE</button> </h2>
+            <h2><button id="reserve-btn" name="submit">RESERVE</button> </h2>
         </form>
     </div>
     <script src="js/main.js"></script>
