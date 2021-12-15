@@ -1,31 +1,97 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+body{
+  background-image: url('pic5.jpg');
+  background-size: 1500px;
+  margin: 0;
+  padding: 0;
 }
 
-ul {
-
-    list-style: none;
-    margin: none;
-    padding: none;
+h1{
+  font-family: 'Stencil';
+  font-weight: bold;
+  font-size: 50px;
+  color: rgb(153, 232, 252);
+  text-shadow: 2px 2px blue;
+  text-align: center;
 }
 
-#timeslots-table{
-    margin-top: 1rem;
-    display: flex;
-    max-width: 800px;
-    justify-content: space-evenly;
-}
-.table-col {
-    /* width: 400px; */
-    border: 1px solid black;
-    padding: 5px;
+h2{
+  font-family: 'Stencil';
+  font-weight: bold;
+  font-size: 25px;
+  color: rgb(94, 196, 255);
+  text-shadow: 1px 1px blue;
+  text-align: center;
 }
 
-.timeslot-item {
-    width: 5.5rem;
-    display: flex;
-    justify-content: space-between;
-    /* gap: 5px; */
-}   
+h3{
+  font-family: 'Stencil';
+  font-weight: bold;
+  font-size: 20px;
+  margin: 3px;
+  color: rgb(94, 196, 255);
+  text-shadow: 1px 1px blue;
+  text-align: center;
+}
+
+button{
+  background-color: rgb(55, 161, 248);
+  border: 5px;
+  color: white;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Stencil';
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+  width: 150px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgb(0, 119, 255);
+  color: white;
+}
+
+.input-box{
+  padding: 5px;
+  border: 0;
+  box-shadow:0 0 5px 4px rgb(173, 236, 252);
+  border-radius:5px;
+  width: 50%;
+}
+
+.login{
+  width: 400px;
+  box-shadow: 0 0 3px 0 blue;
+  border-radius: 50px;
+  background: rgb(225, 250, 255);
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.table{
+  width: 70%;
+  box-shadow: 0 0 3px 0 rgb(0, 162, 255);
+  border-radius: 50px;
+  background: rgb(225, 250, 255);
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.row{
+  background-color: rgb(94, 196, 255);
+  width: 25%;
+}
+
+.rsvp{
+  width: 25%;
+}
+
+.optgroup { 
+  font-family: 'Stencil';
+  font-size:40px; }
