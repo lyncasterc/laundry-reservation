@@ -7,7 +7,8 @@
     // redirects a user to signin.html if a session is not set.
     function check_session(){
         if(empty($_SESSION["session_user"])){
-            header("Location: signin.html");
+            $_SESSION['error'] = "You must be signed in to view that page.";
+            header("Location: signin.php");
         } 
     }
 
@@ -17,10 +18,14 @@
     }
 
     function register(){
-        // todo: handle duplicate apt_number error
         $user_info = create_user();
-        set_session_user($user_info["username"], $user_info["apt_number"]);
-        header("Location: ../index.php");
+        if($user_info){
+            set_session_user($user_info["username"], $user_info["apt_number"]);
+            header("Location: ../index.php");
+        } else {
+            header("Location: ../register.php");
+
+        }
     }
 
     function signin(){
@@ -32,15 +37,15 @@
             set_session_user($input_username, $apt_number);
             header("Location: ../index.php");
         } else {
-            echo "USER DOES NOT EXIST";
-            //todo: figure out how to flash an error
+            $_SESSION["error"] = "Invalid username or password.";
+            header("Location: ../signin.php");
         }
     }
 
     function logout(){
         session_unset();
         session_destroy();
-        header("Location: ../index.php");
+        header("Location: ../signin.php");
     }
 
     function reserve(){
@@ -48,10 +53,13 @@
         $weekday = $_POST['weekday-input'];
         $apt_number = $_SESSION['session_apt'];
 
-        reserve_timeslot($start_hour, $weekday, $apt_number);
+        if(reserve_timeslot($start_hour, $weekday, $apt_number)){
+            $_SESSION['success'] = "Time slot reserved.";
+        } else {
+            $_SESSION['error'] = "Time slot already reserved. Please select another time slot.";
+        }
+
         header("Location: ../index.php");
-        //todo: flash success message
-        //todo: flash error message
     }
 
     //URL Router
@@ -68,9 +76,5 @@
             reserve();
         }
     }
-
-    
-    
-
 
 ?>

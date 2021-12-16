@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <?php session_start() ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,12 @@
 
 <body>
     <div class="login">
+        <?php 
+            if(isset($_SESSION['error'])){
+                echo "<p class='error'>".$_SESSION['error']."</p>";
+                unset($_SESSION['error']);
+            }
+        ?>
 
         <form action="./inc/session.php" method="post">
 
@@ -32,7 +39,7 @@
 
             <button type="submit" name="submit">SIGN UP</button> <br>
 
-            <br><a href="signin.html"> Already have an account? Sign in </a>
+            <br><a href="signin.php"> Already have an account? Sign in </a>
         </form>
     </div>
 </body>

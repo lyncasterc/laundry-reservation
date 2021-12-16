@@ -23,6 +23,15 @@
     </form>
 
     <div class="table">
+        <?php 
+            if(isset($_SESSION['error'])){
+                echo "<p class='error'>".$_SESSION['error']."</p>";
+                unset($_SESSION['error']);
+            } else if (isset($_SESSION['success'])){
+                echo "<p class='success'>".$_SESSION['success']."</p>";
+                unset($_SESSION['success']);
+            }
+        ?>
 
         <table style="width: 100%;" border="1" cellpadding="5">
             <tbody>

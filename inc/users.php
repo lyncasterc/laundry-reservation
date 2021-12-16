@@ -7,6 +7,14 @@
         $input_password = $_POST['password'];
         $apt_number = $_POST['apt_number'];
 
+        if(apt_number_exists($apt_number)){
+            $_SESSION["error"] = "Account with apartment number $apt_number already exists.";
+            return false;
+        } else if(username_exists($input_username)){
+            $_SESSION["error"] = "Username already exists! Try another username.";
+            return false;
+        }
+
         $insert_sql = "INSERT INTO LaundryDatabase.Users (apt_number, username, password) 
                         VALUES ('$apt_number', '$input_username', '$input_password')";
 
@@ -32,4 +40,33 @@
     
         return (empty($result)) ? false : $result;
     }
+
+    // returns true if apt_number exists, false otherwise
+    function apt_number_exists($apt_number){
+        $db = db_connect();
+        $apt_number_exists_sql = "SELECT *
+                            FROM LaundryDatabase.Users 
+                            WHERE LaundryDatabase.Users.apt_number = '$apt_number' ";
+
+        // retrieves the user id 
+        $result = $db->query($apt_number_exists_sql)->fetch_assoc()['apt_number'];
+        $db->close();
+    
+        return (empty($result)) ? false : true;
+    }
+
+    // returns true if username exists, false otherwise
+    function username_exists($username){
+        $db = db_connect();
+        $username_exists_sql = "SELECT *
+                            FROM LaundryDatabase.Users 
+                            WHERE LaundryDatabase.Users.username = '$username' ";
+
+        // retrieves the user id 
+        $result = $db->query($username_exists_sql)->fetch_assoc()['username'];
+        $db->close();
+    
+        return (empty($result)) ? false : true;
+    }
+
 ?>

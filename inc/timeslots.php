@@ -83,15 +83,13 @@
                 WHERE start_hour = '$start_hour' 
                 AND weekday = '$weekday'";
 
-        $result = $db->query($sql);
-
-        // if($result){
-        //     echo "Successfully reserved $start_hour $weekday for apt_number $apt_number.\n\n";
-        // } else {
-        //     echo "Error reserving $start_hour $weekday for apt_number $apt_number.\n\n";
-        // }
-
-        $db->close();
+        if(is_timeslot_reserved($start_hour, $weekday)){
+            return false;
+        } else {
+            $db->query($sql);
+            $db->close();
+            return true;
+        }
     }
 
     // returns true if apt_number has a timeslot reserved, false otherwise
@@ -119,6 +117,16 @@
         return $result;
     }
 
+    //checks if a timeslot already has a apt_number in it's row
+    function is_timeslot_reserved($start_hour, $weekday){
+        $db = db_connect();
+        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE start_hour = '$start_hour' AND weekday = '$weekday'";
+        $result = $db->query($sql)->fetch_assoc();
+        $db->close();
+
+        return !empty($result['apt_number']);
+    }
+
 
     //returns total number of timeslots (should be 56)
     function get_num_timeslots(){
@@ -143,4 +151,7 @@
         $db->close();
     }
 
+
+    
 ?>
+
