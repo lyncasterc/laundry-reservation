@@ -92,21 +92,6 @@
         }
     }
 
-    // returns true if apt_number has a timeslot reserved, false otherwise
-    // function check_for_reservation($apt_number){
-    //     $db = db_connect();
-    //     $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number = '$apt_number'";
-    //     $result = $db->query($sql);
-
-    //     if($result->num_rows > 0){
-    //         $db->close();
-    //         return true;
-    //     } else {
-    //         $db->close();
-    //         return false;
-    //     }
-    // }
-
     // get reservation info for a given apt_number
     function get_reservation_info($apt_number){
         $db = db_connect();

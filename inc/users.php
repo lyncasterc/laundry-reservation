@@ -1,6 +1,7 @@
 <?php 
     require_once 'database.php';
 
+    // insert a new user into the database if the username or apt number is not already taken and return that info as array, otherwise return false.
     function create_user(){
         $db = db_connect();
         $input_username = $_POST['username'];
@@ -34,7 +35,6 @@
                             WHERE LaundryDatabase.Users.username = '$username' 
                             AND LaundryDatabase.Users.password = '$password' ";
 
-        // retrieves the user id 
         $result = $db->query($get_apt_number_sql)->fetch_assoc()['apt_number'];
         $db->close();
     
@@ -48,11 +48,10 @@
                             FROM LaundryDatabase.Users 
                             WHERE LaundryDatabase.Users.apt_number = '$apt_number' ";
 
-        // retrieves the user id 
         $result = $db->query($apt_number_exists_sql)->fetch_assoc()['apt_number'];
         $db->close();
     
-        return (empty($result)) ? false : true;
+        return !empty($result);
     }
 
     // returns true if username exists, false otherwise

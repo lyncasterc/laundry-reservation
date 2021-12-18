@@ -3,20 +3,27 @@
 
 <head>
     <?php
-    require_once './inc/session.php';
-    require_once './inc/timeslots.php';
-    check_session();
-    date_default_timezone_set('America/New_York');
+        require_once './inc/session.php';
+        if(!logged_in()){
+            //todo: why is ['session'] not working but ['unauth'] working in signin.php?
+            // $_SESSION['error'] = "You must be logged in to view this page";
+            $_SESSION['unauth'] = "You must be logged in to view that page";
+            header("Location: ./signin.php");
+        } else if(get_reservation_info($_SESSION['session_apt'])) {
+            header("Location: ./displayrsvp.php");
+        }
+        date_default_timezone_set('America/New_York');
+
     ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display</title>
-    <h1> SCHEDULE FOR THIS WEEK </h1>
     <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
+    <h1> SCHEDULE FOR THIS WEEK </h1>
     <form action="./inc/session.php" method="post" id="logout-form">
         <input type="hidden" name="url" value="logout">
         <button type="submit" name="submit">Log out</button>

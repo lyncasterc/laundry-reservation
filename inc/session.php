@@ -1,15 +1,12 @@
 <?php 
+    session_start();
     require_once 'users.php';
     require_once 'timeslots.php';
 
-    session_start();
 
-    // redirects a user to signin.html if a session is not set.
-    function check_session(){
-        if(empty($_SESSION["session_user"])){
-            $_SESSION['error'] = "You must be signed in to view that page.";
-            header("Location: signin.php");
-        } 
+    // returns true if user is logged in, false otherwise
+    function logged_in(){
+        return isset($_SESSION["session_user"]); 
     }
 
     function set_session_user($username, $apt_number){
@@ -55,11 +52,12 @@
 
         if(reserve_timeslot($start_hour, $weekday, $apt_number)){
             $_SESSION['success'] = "Time slot reserved.";
+            header("Location: ../displayrsvp.php");
         } else {
             $_SESSION['error'] = "Time slot already reserved. Please select another time slot.";
+            header("Location: ../index.php");
         }
 
-        header("Location: ../index.php");
     }
 
     //URL Router
