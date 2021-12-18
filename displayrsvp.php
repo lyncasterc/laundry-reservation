@@ -43,7 +43,7 @@
 
         <h2>
 
-            YOU ALREADY HAVE AN <br> EXISTING RESERVATION <br> FOR THIS WEEK <br>
+            YOUR RESERVATION <br> FOR THIS WEEK IS ON <br>
             <br>
 
             <?php

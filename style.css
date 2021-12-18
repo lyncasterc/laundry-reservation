@@ -23,7 +23,7 @@ body{
 }
 
 h1{
-  font-family: 'Stencil';
+  font-family: 'Times New Roman', serif;
   font-weight: bold;
   font-size: 50px;
   color: rgb(153, 232, 252);
@@ -32,7 +32,7 @@ h1{
 }
 
 h2{
-  font-family: 'Stencil';
+  font-family: 'Times New Roman', serif;
   font-weight: bold;
   font-size: 25px;
   color: rgb(94, 196, 255);
@@ -41,7 +41,7 @@ h2{
 }
 
 h3{
-  font-family: 'Stencil';
+  font-family: 'Times New Roman', serif;
   font-weight: bold;
   font-size: 20px;
   margin: 3px;
@@ -59,7 +59,7 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-family: 'Stencil';
+  font-family: 'Times New Roman', serif;
   font-size: 16px;
   font-weight: 600;
   margin: 0;
@@ -140,7 +140,7 @@ button:hover {
 }
 
 .optgroup { 
-  font-family: 'Stencil';
+  font-family: 'Times New Roman', serif;
   font-size:40px; }
 
 /* Index time slots */
