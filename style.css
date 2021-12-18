@@ -101,6 +101,16 @@ button:hover {
   text-align: center;
 }
 
+.table table {
+  width: 100%; 
+  border: 1px solid black; 
+}
+
+.table table th, .table table td {
+  border: 1px solid black; 
+  padding: 5px;
+}
+
 .row{
   background-color: rgb(94, 196, 255);
   color: white;

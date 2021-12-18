@@ -3,17 +3,18 @@
     require_once 'users.php';
     require_once 'timeslots.php';
 
-
     // returns true if user is logged in, false otherwise
     function logged_in(){
         return isset($_SESSION["session_user"]); 
     }
 
+    // sets session variables for username and apt_number
     function set_session_user($username, $apt_number){
         $_SESSION["session_user"] = $username;
         $_SESSION["session_apt"] = $apt_number;
     }
 
+    // register action that runs when user submits form from register.php
     function register(){
         $user_info = create_user();
         if($user_info){
@@ -25,6 +26,7 @@
         }
     }
 
+    // signin action that runs when user submits form from signin.php
     function signin(){
         $input_username = $_POST['username'];
         $input_password = $_POST['password'];
@@ -39,12 +41,14 @@
         }
     }
 
+    // signout action that runs when user clicks logout button
     function logout(){
         session_unset();
         session_destroy();
         header("Location: ../signin.php");
     }
 
+    // reserve action that runs when user submits form from index.php
     function reserve(){
         $start_hour = $_POST['hour-input'];
         $weekday = $_POST['weekday-input'];
@@ -60,7 +64,7 @@
 
     }
 
-    //URL Router
+    //routes users to appropriate actions
     if(isset($_POST['submit'])){
         $url = $_POST['url'];
 

@@ -40,7 +40,7 @@
             }
         ?>
 
-        <table style="width: 100%;" border="1" cellpadding="5">
+        <table >
             <tbody>
                 <tr height="5px">
                     <td>
@@ -126,11 +126,11 @@
 
         <form action="./inc/session.php" method="post" id="reserve">
             <h3>SELECT DAY OF THE WEEK</h3>
-            <select name="weekday-input" id="weekday-input" class="rsvp" style="font-family : Sentil; font-weight: bold; font-size: 16px; color: blue; background-color: rgb(94, 196, 255); text-align:  center; height: 25px; border-radius: 9px; box-shadow: 2px 2px blue">
+            <select name="weekday-input" id="weekday-input" class="rsvp" >
             </select>
 
             <h3>SELECT TIME SLOT</h3>
-            <select name="hour-input" id="hour-input" class="rsvp" style="font-family : Sentil; font-weight: bold; font-size: 16px; color: blue; background-color: rgb(94, 196, 255); text-align:  center; height: 25px; border-radius: 9px; box-shadow: 2px 2px blue">
+            <select name="hour-input" id="hour-input" class="rsvp" >
             </select>
             <br>
 
