@@ -17,7 +17,7 @@
     function register(){
         $user_info = create_user();
         if($user_info){
-            set_session_user($user_info["username"], $user_info["apt_number"]);
+            set_session_user($user_info[0], $user_info[1]);
             header("Location: ../index.php");
         } else {
             header("Location: ../register.php");
