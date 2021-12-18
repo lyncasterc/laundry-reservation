@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-    <?php 
-        // session_start(); 
+    <?php
         require_once './inc/session.php';
-        // var_dump($_SESSION);
         if(logged_in()){
             header("Location: ./index.php");
         }
