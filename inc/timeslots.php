@@ -12,7 +12,7 @@
 
         foreach ($GLOBALS['weekdays'] as $weekday){
             for ($i = 0; $i < 24; $i += 3) { 
-                $insert_sql = "INSERT INTO LaundryDatabase.Timeslots (start_hour, weekday)
+                $insert_sql = "INSERT INTO heroku_e691b3f32de1113.Timeslots (start_hour, weekday)
                                 VALUES ('$i:00', '$weekday')";
 
                 if($db->query($insert_sql)){
@@ -30,7 +30,7 @@
     //get all of the timeslots from the database where apt_number is null and return them as an array
     function get_available_timeslots($weekday){
         $db = db_connect();
-        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number IS NULL AND weekday = '$weekday'";
+        $sql = "SELECT * FROM heroku_e691b3f32de1113.Timeslots WHERE apt_number IS NULL AND weekday = '$weekday'";
         $result = $db->query($sql);
         $timeslots = [];
 
@@ -78,7 +78,7 @@
     // reserve a timeslot using the start_hour and weekday of the timeslot
     function reserve_timeslot($start_hour, $weekday, $apt_number){
         $db = db_connect();
-        $sql = "UPDATE LaundryDatabase.Timeslots 
+        $sql = "UPDATE heroku_e691b3f32de1113.Timeslots 
                 SET apt_number = '$apt_number' 
                 WHERE start_hour = '$start_hour' 
                 AND weekday = '$weekday'";
@@ -95,7 +95,7 @@
     // get reservation info for a given apt_number
     function get_reservation_info($apt_number){
         $db = db_connect();
-        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE apt_number = '$apt_number'";
+        $sql = "SELECT * FROM heroku_e691b3f32de1113.Timeslots WHERE apt_number = '$apt_number'";
         $result = $db->query($sql)->fetch_assoc();
         $db->close();
 
@@ -105,7 +105,7 @@
     //checks if a timeslot already has a apt_number in it's row
     function is_timeslot_reserved($start_hour, $weekday){
         $db = db_connect();
-        $sql = "SELECT * FROM LaundryDatabase.Timeslots WHERE start_hour = '$start_hour' AND weekday = '$weekday'";
+        $sql = "SELECT * FROM heroku_e691b3f32de1113.Timeslots WHERE start_hour = '$start_hour' AND weekday = '$weekday'";
         $result = $db->query($sql)->fetch_assoc();
         $db->close();
 
@@ -116,7 +116,7 @@
     //returns total number of timeslots (should be 56)
     function get_num_timeslots(){
         $db = db_connect();
-        $sql = "SELECT COUNT(*) FROM LaundryDatabase.Timeslots";
+        $sql = "SELECT COUNT(*) FROM heroku_e691b3f32de1113.Timeslots";
         $count = $db->query($sql)->fetch_assoc()['COUNT(*)'];
         $db->close();
     
@@ -131,7 +131,7 @@
     // resetting apt_numbers to null if at Sunday at 00:00
     if ($current_weekday == 'Sunday' && $current_time == '0000') {
         $db = db_connect();
-        $sql = "UPDATE LaundryDatabase.Timeslots SET apt_number = NULL";
+        $sql = "UPDATE heroku_e691b3f32de1113.Timeslots SET apt_number = NULL";
         $db->query($sql);
         $db->close();
     }

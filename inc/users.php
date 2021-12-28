@@ -16,7 +16,7 @@
             return false;
         }
 
-        $insert_sql = "INSERT INTO LaundryDatabase.Users (apt_number, username, password) 
+        $insert_sql = "INSERT INTO heroku_e691b3f32de1113.Users (apt_number, username, password) 
                         VALUES ('$apt_number', '$input_username', '$input_password')";
 
         $db->query($insert_sql);
@@ -31,9 +31,9 @@
     function get_apt_number($username, $password){
         $db = db_connect();
         $get_apt_number_sql = "SELECT *
-                            FROM LaundryDatabase.Users 
-                            WHERE LaundryDatabase.Users.username = '$username' 
-                            AND LaundryDatabase.Users.password = '$password' ";
+                            FROM heroku_e691b3f32de1113.Users 
+                            WHERE heroku_e691b3f32de1113.Users.username = '$username' 
+                            AND heroku_e691b3f32de1113.Users.password = '$password' ";
 
         $result = $db->query($get_apt_number_sql)->fetch_assoc()['apt_number'];
         $db->close();
@@ -45,8 +45,8 @@
     function apt_number_exists($apt_number){
         $db = db_connect();
         $apt_number_exists_sql = "SELECT *
-                            FROM LaundryDatabase.Users 
-                            WHERE LaundryDatabase.Users.apt_number = '$apt_number' ";
+                            FROM heroku_e691b3f32de1113.Users 
+                            WHERE heroku_e691b3f32de1113.Users.apt_number = '$apt_number' ";
 
         $result = $db->query($apt_number_exists_sql)->fetch_assoc()['apt_number'];
         $db->close();
@@ -58,8 +58,8 @@
     function username_exists($username){
         $db = db_connect();
         $username_exists_sql = "SELECT *
-                            FROM LaundryDatabase.Users 
-                            WHERE LaundryDatabase.Users.username = '$username' ";
+                            FROM heroku_e691b3f32de1113.Users 
+                            WHERE heroku_e691b3f32de1113.Users.username = '$username' ";
 
         // retrieves the user id 
         $result = $db->query($username_exists_sql)->fetch_assoc()['username'];
