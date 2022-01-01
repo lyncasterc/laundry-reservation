@@ -13,5 +13,5 @@ Check it out [live!](https://laundry-reservation-sc.herokuapp.com/signin.php)
 ***
 **NOTE: DO NOT CREATE AN ACCOUNT WITH ANY OF YOUR REAL PASSWORDS.**
 
-**This website is simply for demonstration purposes only**
+**This website is simply for demonstration purposes only.**
 ***
