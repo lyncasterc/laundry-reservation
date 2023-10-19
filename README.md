@@ -7,11 +7,3 @@ design a system using SDLC concepts, and actually create a funnctional piece of 
 
 The concept of the project is to design a system and create a website for an apartment complex of 25 tenants who have to share one laundry room, that allows tenants to reserve a 3-hour time slot.
 Each tenant can only reserve one timeslot per week, and can not change their timeslot once they have reserved one.
-
-Check it out [live!](https://laundry-reservation-sc.herokuapp.com/signin.php)
-
-***
-**NOTE: DO NOT CREATE AN ACCOUNT WITH ANY OF YOUR REAL PASSWORDS.**
-
-**This website is simply for demonstration purposes only.**
-***
